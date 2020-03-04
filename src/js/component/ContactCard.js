@@ -8,6 +8,22 @@ export const ContactCard = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
+
+	const onDelete = id => {
+		console.log(id);
+		fetch("https://assets.breatheco.de//apis/fake/contact/agenda/kevs_agenda/" + id, {
+			method: "delete"
+		})
+			.then(response =>
+				response.json().then(json => {
+					return json;
+				})
+			)
+			.catch(function(error) {
+				console.log("Looks like there was a problem: \n", error);
+			});
+	};
+
 	const { store, actions } = useContext(Context);
 	return (
 		<>
@@ -15,7 +31,7 @@ export const ContactCard = props => {
 				? "loading"
 				: store.contacts.map((contact, index) => {
 						return (
-							<li key={contact.id} className="list-group-item">
+							<li key={index} className="list-group-item">
 								<div className="row w-100">
 									<div className="col-12 col-sm-6 col-md-3 px-0">
 										<img
@@ -29,7 +45,7 @@ export const ContactCard = props => {
 											<button className="btn">
 												<i className="fas fa-pencil-alt mr-3" />
 											</button>
-											<button className="btn" onClick={() => props.onDelete()}>
+											<button className="btn" onClick={() => onDelete(contact.id)}>
 												<i className="fas fa-trash-alt" />
 											</button>
 										</div>
@@ -68,11 +84,7 @@ export const ContactCard = props => {
  **/
 ContactCard.propTypes = {
 	history: PropTypes.object,
-	onDelete: PropTypes.func,
-	full_name: PropTypes.string,
-	email: PropTypes.string,
-	address: PropTypes.string,
-	phone: PropTypes.string
+	onDelete: PropTypes.func
 };
 
 /**
