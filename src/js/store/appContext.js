@@ -22,20 +22,23 @@ const injectContext = PassedComponent => {
 			})
 		);
 
-		useEffect(() => {
-			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
-				.then(function(response) {
-					if (!response.ok) {
-						throw Error(response.statusText);
-					}
-					return response.json();
-				})
-				.then(data => {
-					let { store } = state;
-					setState({ store: { ...store, contacts: data } });
-				});
-			state.actions.loadSomeData();
-		}, []);
+		useEffect(
+			() => {
+				// fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
+				// 	.then(function(response) {
+				// 		if (!response.ok) {
+				// 			throw Error(response.statusText);
+				// 		}
+				// 		return response.json();
+				// 	})
+				// 	.then(data => {
+				// 		let { store } = state;
+				// 		setState({ store: { ...store, contacts: data } });
+				// 	});
+				state.actions.loadSomeData();
+			},
+			[state]
+		);
 
 		return (
 			<Context.Provider value={state}>
