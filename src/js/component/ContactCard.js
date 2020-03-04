@@ -9,9 +9,9 @@ export const ContactCard = props => {
 		//initialize state here
 	});
 
-	const onDelete = id => {
-		console.log(id);
-		fetch("https://assets.breatheco.de//apis/fake/contact/agenda/kevs_agenda/" + id, {
+	const onDelete = contact => {
+		console.log(contact);
+		fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
 			method: "delete"
 		})
 			.then(response =>
@@ -45,7 +45,7 @@ export const ContactCard = props => {
 											<button className="btn">
 												<i className="fas fa-pencil-alt mr-3" />
 											</button>
-											<button className="btn" onClick={() => onDelete(contact.id)}>
+											<button className="btn" onClick={() => onDelete(contact)}>
 												<i className="fas fa-trash-alt" />
 											</button>
 										</div>
