@@ -32,7 +32,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 			AddContact(myObj, props) {
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda", {
 					method: "POST",
 					headers: { "Content-type": "application/json" },
 					body: JSON.stringify(myObj)
