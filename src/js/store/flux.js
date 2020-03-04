@@ -21,7 +21,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						if (!response.ok) {
 							throw Error(response.statusText);
 						}
-						console.log("im working");
+						// console.log("im working");
 						return response.json();
 					})
 					.then(data => setStore({ contacts: data }))
@@ -32,11 +32,12 @@ const getState = ({ getStore, setStore, getActions }) => {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 			AddContact(myObj, props) {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda", {
+				console.log(JSON.stringify(myObj));
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",
 					headers: { "Content-type": "application/json" },
 					body: JSON.stringify(myObj)
-				}).catch(e => console.error(e));
+				}).catch(e => console.error("errrrror" + e));
 			}
 		}
 	};
