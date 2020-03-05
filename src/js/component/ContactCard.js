@@ -3,28 +3,30 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 import { Context } from "../store/appContext";
+import { Modal } from "../component/Modal";
 
 export const ContactCard = props => {
 	const [state, setState] = useState({
-		//initialize state here
+		showModal: false
 	});
 
-	const onDelete = contact => {
-		console.log(contact);
-		fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
-			method: "delete"
-		})
-			.then(response =>
-				response.json().then(json => {
-					return json;
-				})
-			)
-			.catch(function(error) {
-				console.log("Looks like there was a problem: \n", error);
-			});
-	};
+	// const onDelete = contact => {
+	// 	console.log(contact);
+	// 	fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
+	// 		method: "delete"
+	// 	})
+	// 		.then(response =>
+	// 			response.json().then(json => {
+	// 				return json;
+	// 			})
+	// 		)
+	// 		.catch(function(error) {
+	// 			console.log("Looks like there was a problem: \n", error);
+	// 		});
+	// };
 
 	const { store, actions } = useContext(Context);
+
 	return (
 		<>
 			{!store.contacts
@@ -45,11 +47,13 @@ export const ContactCard = props => {
 											<button className="btn">
 												<i className="fas fa-pencil-alt mr-3" />
 											</button>
-											<button className="btn" onClick={() => onDelete(contact)}>
+											<button className="btn" onClick={() => setState({ showModal: true })}>
 												<i className="fas fa-trash-alt" />
 											</button>
 										</div>
-										<label className="name lead">{contact.full_name}</label>
+										<label className="name lead">
+											{contact.full_name} = {contact.id}
+										</label>
 										<br />
 										<i className="fas fa-map-marker-alt text-muted mr-3" />
 										<span className="text-muted">{contact.address}</span>
@@ -71,6 +75,11 @@ export const ContactCard = props => {
 										<span className="text-muted small text-truncate">{contact.email}</span>
 									</div>
 								</div>
+								<Modal
+									show={state.showModal}
+									id={contact.id}
+									onClose={() => setState({ showModal: false })}
+								/>
 							</li>
 						);
 				  })}
@@ -84,7 +93,7 @@ export const ContactCard = props => {
  **/
 ContactCard.propTypes = {
 	history: PropTypes.object,
-	onDelete: PropTypes.func
+	onOpenModal: PropTypes.func
 };
 
 /**
@@ -92,5 +101,5 @@ ContactCard.propTypes = {
  * your component's properties
  **/
 ContactCard.defaultProps = {
-	onDelete: null
+	onOpenModal: null
 };

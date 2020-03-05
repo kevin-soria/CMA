@@ -15,6 +15,20 @@ const getState = ({ getStore, setStore, getActions }) => {
 			//Your data structures, A.K.A Entities
 		},
 		actions: {
+			onDelete: bubu => {
+				console.log(bubu);
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + bubu, {
+					method: "delete"
+				})
+					.then(response =>
+						response.json().then(json => {
+							return json;
+						})
+					)
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			},
 			loadSomeData: () => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
 					.then(function(response) {
