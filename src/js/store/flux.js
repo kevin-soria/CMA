@@ -53,14 +53,27 @@ const getState = ({ getStore, setStore, getActions }) => {
 					body: JSON.stringify(myObj)
 				}).catch(e => console.error("errrrror" + e));
 			},
-			EditContact(myObj, props) {
+			EditContact: myObj => {
 				console.log(myObj);
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
-					method: "Put",
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + myObj.id, {
+					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(myObj)
 				}).catch(e => console.error("errrrror" + e));
 			}
+			// onDelete: bubu => {
+			// console.log(bubu);
+			// fetch("https://assets.breatheco.de/apis/fake/contact/" + bubu, {
+			// 	method: "delete"
+			// })
+			// 	.then(response =>
+			// 		response.json().then(json => {
+			// 			return json;
+			// 		})
+			// 	)
+			// 	.catch(function(error) {
+			// 		console.log("Looks like there was a problem: \n", error);
+			// 	});
 		}
 	};
 };
