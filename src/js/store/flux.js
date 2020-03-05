@@ -52,6 +52,14 @@ const getState = ({ getStore, setStore, getActions }) => {
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(myObj)
 				}).catch(e => console.error("errrrror" + e));
+			},
+			EditContact(myObj, props) {
+				console.log(myObj);
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+					method: "Put",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(myObj)
+				}).catch(e => console.error("errrrror" + e));
 			}
 		}
 	};
