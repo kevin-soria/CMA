@@ -30,7 +30,7 @@ export const ContactCard = props => {
 									</div>
 									<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 										<div className=" float-right">
-											<Link to={"/edit/" + index}>
+											<Link to={"/edit/" + index + "/" + contact.id}>
 												<button className="btn">
 													<i className="fas fa-pencil-alt mr-3" />
 												</button>

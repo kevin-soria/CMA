@@ -53,12 +53,17 @@ const getState = ({ getStore, setStore, getActions }) => {
 					body: JSON.stringify(myObj)
 				}).catch(e => console.error("errrrror" + e));
 			},
-			EditContact: myObj => {
-				console.log(myObj);
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + myObj.id, {
+			EditContact: (bubu, tiger, tutu, mama, gigi) => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + gigi, {
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(myObj)
+					body: JSON.stringify({
+						full_name: bubu,
+						phone: mama,
+						address: tutu,
+						email: tiger,
+						agenda_slug: "kevs_agenda"
+					})
 				}).catch(e => console.error("errrrror" + e));
 			}
 			// onDelete: bubu => {

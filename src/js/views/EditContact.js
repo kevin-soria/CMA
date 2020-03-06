@@ -10,22 +10,6 @@ export const EditContact = props => {
 	const [email, setEmail] = useState(store.contacts[props.match.params.ind].email);
 	const [address, setAddress] = useState(store.contacts[props.match.params.ind].address);
 
-	const [objContact, setObjContact] = useState();
-	// console.log(props);
-	useEffect(
-		contact => {
-			setObjContact({
-				agenda_slug: "kevs_agenda",
-				full_name: name,
-				email: email,
-				phone: phone,
-				address: address
-			});
-			console.log(name);
-		},
-		[name, email, phone, address]
-	);
-
 	return (
 		<div className="container">
 			<div>
@@ -36,7 +20,7 @@ export const EditContact = props => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder={name}
+							value={name}
 							onChange={e => {
 								setName(e.target.value);
 							}}
@@ -47,7 +31,7 @@ export const EditContact = props => {
 						<input
 							type="email"
 							className="form-control"
-							placeholder={email}
+							value={email}
 							onChange={e => setEmail(e.target.value)}
 						/>
 					</div>
@@ -56,7 +40,7 @@ export const EditContact = props => {
 						<input
 							type="phone"
 							className="form-control"
-							placeholder={phone}
+							value={phone}
 							onChange={e => setPhone(e.target.value)}
 						/>
 					</div>
@@ -65,7 +49,7 @@ export const EditContact = props => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder={address}
+							value={address}
 							onChange={e => setAddress(e.target.value)}
 						/>
 					</div>
@@ -73,7 +57,7 @@ export const EditContact = props => {
 						<button
 							type="button"
 							className="btn btn-primary form-control"
-							onClick={() => actions.EditContact(objContact.id)}>
+							onClick={() => actions.EditContact(name, email, address, phone, props.match.params.meme)}>
 							save Contact
 						</button>
 					</Link>
