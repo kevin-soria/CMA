@@ -7,21 +7,19 @@ export const AddContact = props => {
 	const [phone, setPhone] = useState("");
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
-	const [address, setAddress] = useState("");
+	const [bubu, setBubu] = useState("");
 
 	const [objContact, setObjContact] = useState();
 
 	useEffect(
 		() => {
 			setObjContact({
-				agenda_slug: "kevs_agenda",
-				full_name: name,
+				username: name,
 				email: email,
-				phone: phone,
-				address: address
+				tt: bubu
 			});
 		},
-		[name, email, phone, address]
+		[name, email, bubu]
 	);
 
 	return (
@@ -62,7 +60,7 @@ export const AddContact = props => {
 							type="text"
 							className="form-control"
 							placeholder="Enter address"
-							onChange={e => setAddress(e.target.value)}
+							onChange={e => setBubu(e.target.value)}
 						/>
 					</div>
 					<Link to={"/"}>

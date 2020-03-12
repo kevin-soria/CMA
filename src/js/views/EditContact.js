@@ -6,9 +6,9 @@ import PropTypes from "prop-types";
 export const EditContact = props => {
 	const { actions, store } = useContext(Context);
 	const [phone, setPhone] = useState(store.contacts[props.match.params.ind].phone);
-	const [name, setName] = useState(store.contacts[props.match.params.ind].full_name);
+	const [name, setName] = useState(store.contacts[props.match.params.ind].username);
 	const [email, setEmail] = useState(store.contacts[props.match.params.ind].email);
-	const [address, setAddress] = useState(store.contacts[props.match.params.ind].address);
+	const [address, setAddress] = useState(store.contacts[props.match.params.ind].bubu);
 
 	return (
 		<div className="container">
@@ -55,7 +55,7 @@ export const EditContact = props => {
 					</div>
 					<Link to={"/"}>
 						<button
-							type="button"
+							typse="button"
 							className="btn btn-primary form-control"
 							onClick={() => actions.EditContact(name, email, address, phone, props.match.params.meme)}>
 							save Contact

@@ -5,10 +5,9 @@ const getState = ({ getStore, setStore, getActions }) => {
 		store: {
 			contacts: [
 				{
-					fullname: "",
-					phone: "",
+					username: "",
 					email: "",
-					address: ""
+					tt: ""
 				}
 			]
 
@@ -17,7 +16,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 		actions: {
 			onDelete: bubu => {
 				console.log(bubu);
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + bubu, {
+				fetch("https://3000-d5a4c0e7-ef79-4dfa-bd72-53e0c821f70e.ws-us02.gitpod.io/user/" + bubu, {
 					method: "delete"
 				})
 					.then(response =>
@@ -30,7 +29,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 					});
 			},
 			loadSomeData: () => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
+				fetch("https://3000-d5a4c0e7-ef79-4dfa-bd72-53e0c821f70e.ws-us02.gitpod.io/user")
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
@@ -47,22 +46,21 @@ const getState = ({ getStore, setStore, getActions }) => {
 			// Remember to use the scope: scope.state.store & scope.setState()
 			AddContact(myObj, props) {
 				console.log(myObj);
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				fetch("https://3000-d5a4c0e7-ef79-4dfa-bd72-53e0c821f70e.ws-us02.gitpod.io/newuser/", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(myObj)
-				}).catch(e => console.error("errrrror" + e));
+				}).catch(e => console.error("errrrror in add" + e));
 			},
 			EditContact: (bubu, tiger, tutu, mama, gigi) => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + gigi, {
+				fetch("https://3000-d5a4c0e7-ef79-4dfa-bd72-53e0c821f70e.ws-us02.gitpod.io/user/" + gigi, {
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
-						full_name: bubu,
+						username: bubu,
 						phone: mama,
 						address: tutu,
-						email: tiger,
-						agenda_slug: "kevs_agenda"
+						email: tiger
 					})
 				}).catch(e => console.error("errrrror" + e));
 			}
